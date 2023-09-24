@@ -19,6 +19,15 @@ async function cargarProductos() {
         const productoSelect = document.getElementById('producto');
         const productoImagen = document.getElementById('producto-imagen'); // Elemento para mostrar la imagen
 
+        // Limpia el select de productos al cargar la página
+        productoSelect.innerHTML = '';
+
+        // Agrega una opción vacía al select
+        const optionVacia = document.createElement('option');
+        optionVacia.value = ''; // Valor vacío
+        optionVacia.textContent = ''; // Texto vacío
+        productoSelect.appendChild(optionVacia);
+
         productos.forEach((producto) => {
             const option = document.createElement('option');
             option.value = producto.id; // Cambiar a ID en lugar de nombre
