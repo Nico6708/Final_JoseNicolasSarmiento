@@ -17,16 +17,7 @@ async function cargarProductos() {
         productos = await response.json();
         console.log(productos);
         const productoSelect = document.getElementById('producto');
-        const productoImagen = document.getElementById('producto-imagen'); 
-
-        // Limpiar cualquier opción previa en el select
-        productoSelect.innerHTML = '';
-
-        // Agregar una opción vacía al principio
-        const option = document.createElement('option');
-        option.value = ''; 
-        option.textContent = 'Seleccionar producto'; 
-        productoSelect.appendChild(option);
+        const productoImagen = document.getElementById('producto-imagen'); // Elemento para mostrar la imagen
 
         productos.forEach((producto) => {
             const option = document.createElement('option');
@@ -204,13 +195,6 @@ document.getElementById('compra-form').addEventListener('submit', function (e) {
     }
 });
 
-// Cargar carrito desde localStorage si existe
-const storedCarrito = localStorage.getItem('carrito');
-if (storedCarrito) {
-    carrito.push(...JSON.parse(storedCarrito));
-    actualizarCarrito();
-}
-
 // Función para finalizar la compra
 document.getElementById('finalizarCompra').addEventListener('click', function () {
     if (carrito.length > 0) {
@@ -229,13 +213,20 @@ document.getElementById('finalizarCompra').addEventListener('click', function ()
         actualizarCarrito();
 
         // Limpiar los campos de unidades, descuento y reiniciar la imagen
-        document.getElementById('producto').value = '';
         document.getElementById('unidades').value = '';
         document.getElementById('codigoDescuento').value = '';
-        document.getElementById('producto-imagen').src = ''; 
+        document.getElementById('producto-imagen').src = ''; // Reiniciar la imagen
+
+        // Habilitar nuevamente el campo de entrada de códigos de descuento y el botón "Aplicar Descuento"
+        document.getElementById('codigoDescuento').disabled = false;
+        document.getElementById('aplicarDescuento').disabled = false;
 
         // Deshabilitar el botón "Finalizar Compra" nuevamente
         document.getElementById('finalizarCompra').disabled = true;
+
+        // Reiniciar el estado del descuento aplicado
+        descuentoAplicado = false;
+        descuentoGuardado = 0;
 
     } else {
         // Si no hay productos en el carrito, muestra un mensaje de error con Toastify
