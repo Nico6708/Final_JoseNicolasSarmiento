@@ -1,5 +1,5 @@
 [
-    {"id": 1 ,"nombre": "Vodka", "precio": 500, "imagen": "../imagenes/vodka1.png"},
+    {"id": 1 ,"nombre": "Vodka", "precio": 500, "imagen": "./imagenes/vodka1.png"},
     {"id": 2 ,"nombre": "Fernet", "precio": 1600, "imagen": "../imagenes/fernet1.png"},
     {"id": 3 ,"nombre": "Cepita", "precio": 450, "imagen": "../imagenes/cepita1.png"},
     {"id": 4 ,"nombre": "Speed", "precio": 380, "imagen": "../imagenes/speed1.png"},
